@@ -1,0 +1,8 @@
+@tailwindcss base;
+@tailwindcss components;
+@tailwindcss utilities;
+
+:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
