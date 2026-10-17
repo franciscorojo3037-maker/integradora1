@@ -7,7 +7,7 @@ const contentData = {
       title: "Curso HTML5 desde Cero",
       description: "Aprende la estructura básica, etiquetas principales y buenas prácticas de HTML5.",
       category: "HTML",
-      embedUrl: "https://www.youtube.com/embed/MJkdaVFHrto?si=q2FXlusDOayGhUlB",
+      embedUrl: "https://www.youtube.com/embed/MJkdaVFHrto",
       directUrl: "https://youtu.be/MJkdaVFHrto?si=PxdbBY9nhTv-Yhqy"
     },
     {
@@ -15,7 +15,7 @@ const contentData = {
       title: "Curso CSS3 desde Cero",
       description: "Domina la estilización de elementos, colores, tipografía, Flexbox y Grid.",
       category: "CSS",
-      embedUrl: "https://www.youtube.com/embed/wZniZEbPAzk?si=fUZCfbx-EBKQ3yr3",
+      embedUrl: "https://www.youtube.com/embed/wZniZEbPAzk",
       directUrl: "https://www.youtube.com/watch?v=wZniZEbPAzk"
     },
     {
@@ -23,7 +23,7 @@ const contentData = {
       title: "Curso JavaScript desde Cero",
       description: "Aprende la lógica de programación, variables, funciones y manipulación del DOM.",
       category: "JavaScript",
-      embedUrl: "https://www.youtube.com/embed/QoC4RxNIs5M?si=oOSt9GCGeHLQs092",
+      embedUrl: "https://www.youtube.com/embed/QoC4RxNIs5M",
       directUrl: "https://www.youtube.com/watch?v=QoC4RxNIs5M"
     }
   ],
@@ -197,7 +197,7 @@ export default function App() {
         </section>
       </main>
 
-      {/* Modal para ver lectura/resumen */}
+      {/* Modal para ver lectura/resumen (con scroll interno optimizado) */}
       {selectedArticle && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(15, 23, 42, 0.65)', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1.5rem', zIndex: 100 }}>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '0.75rem', padding: '2rem', maxWidth: '700px', width: '100%', maxHeight: '85vh', overflowY: 'auto', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
