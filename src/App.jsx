@@ -106,18 +106,53 @@ Propiedades de los Hijos (Items):
 
 export default function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  // US-08: Estado para controlar la apertura del menú hamburguesa en móviles
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif', backgroundColor: '#f8fafc', color: '#1e293b', minHeight: '100vh', margin: 0, padding: 0 }}>
-      {/* Header */}
+      {/* Header Responsivo */}
       <header style={{ backgroundColor: '#2563eb', color: '#ffffff', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', position: 'sticky', top: 0, zIndex: 50 }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: 0 }}>Aprende Desarrollo Web</h1>
-          <nav>
-            <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0, fontSize: '0.95rem', fontWeight: 500 }}>
-              <li><a href="#inicio" style={{ color: '#ffffff', textDecoration: 'none' }}>Inicio</a></li>
-              <li><a href="#videos" style={{ color: '#ffffff', textDecoration: 'none' }}>Videos educativos</a></li>
-              <li><a href="#lecturas" style={{ color: '#ffffff', textDecoration: 'none' }}>Artículos y lecturas</a></li>
+          
+          {/* Botón Toggle del Menú Hamburguesa (US-08) */}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Abrir menú de navegación"
+            style={{ 
+              backgroundColor: 'transparent', 
+              border: 'none', 
+              color: '#ffffff', 
+              fontSize: '1.75rem', 
+              cursor: 'pointer',
+              padding: '0.25rem 0.5rem',
+              lineHeight: 1
+            }}
+          >
+            {isMenuOpen ? '✕' : '☰'}
+          </button>
+
+          {/* Menú de Navegación Responsivo */}
+          <nav style={{ 
+            width: '100%', 
+            display: isMenuOpen ? 'block' : 'none', 
+            marginTop: '1rem' 
+          }}>
+            <ul style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '1rem', 
+              listStyle: 'none', 
+              margin: 0, 
+              padding: '1rem 0 0.5rem 0', 
+              borderTop: '1px solid rgba(255, 255, 255, 0.2)', 
+              fontSize: '1rem', 
+              fontWeight: 500 
+            }}>
+              <li><a href="#inicio" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffffff', textDecoration: 'none' }}>Inicio</a></li>
+              <li><a href="#videos" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffffff', textDecoration: 'none' }}>Videos educativos</a></li>
+              <li><a href="#lecturas" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffffff', textDecoration: 'none' }}>Artículos y lecturas</a></li>
             </ul>
           </nav>
         </div>
@@ -135,43 +170,82 @@ export default function App() {
       </section>
 
       {/* Main Content */}
+
       <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 1.5rem' }}>
+
         {/* Videos Section */}
+
         <section id="videos" style={{ marginBottom: '4rem' }}>
+
           <h2 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '0.5rem', marginTop: 0, color: '#0f172a' }}>Videos educativos</h2>
+
           <p style={{ textAlign: 'center', color: '#64748b', marginBottom: '2.5rem' }}>Clases y tutoriales para comenzar a desarrollar sitios web.</p>
-          
+
+         
+
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.75rem' }}>
+
             {contentData.videos.map((item) => (
+
               <article key={item.id} style={{ backgroundColor: '#ffffff', borderRadius: '0.75rem', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+
                 <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, backgroundColor: '#000000' }}>
-                  <iframe 
-                    src={item.embedUrl} 
-                    title={item.title} 
+
+                  <iframe
+
+                    src={item.embedUrl}
+
+                    title={item.title}
+
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+
                     allowFullScreen
+
                   ></iframe>
+
                 </div>
+
                 <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' }}>
+
                   <div>
+
                     <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#2563eb', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{item.category}</span>
+
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem', color: '#0f172a' }}>{item.title}</h3>
+
                     <p style={{ color: '#475569', fontSize: '0.9rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>{item.description}</p>
+
                   </div>
-                  <a 
-                    href={item.directUrl} 
-                    target="_blank" 
+
+                  <a
+
+                    href={item.directUrl}
+
+                    target="_blank"
+
                     rel="noopener noreferrer"
+
                     style={{ backgroundColor: '#2563eb', color: '#ffffff', textDecoration: 'none', padding: '0.65rem 1rem', borderRadius: '0.375rem', fontWeight: '500', textAlign: 'center', display: 'block' }}
+
                   >
+
                     Ver lección en YouTube
+
                   </a>
+
                 </div>
+
               </article>
+
             ))}
+
           </div>
+
         </section>
+
+
 
         {/* Articles Section */}
         <section id="lecturas">
